@@ -15,14 +15,31 @@ const gridContainer = document.querySelector(".gridContainer");
 const gridNumbers = [];
 
 // Creo una funzione con cui andrò a generare la lista delle bombe
-function generaListaBombe() { }
+function generaListaBombe(number) {
+    const listaBombe = [];
+
+    do {
+        const numeroRandom = Math.floor(Math.random() * number) + 1;
+
+        if (!listaBombe.includes(numeroRandom)) {
+            listaBombe.push(numeroRandom);
+        }
+
+    } while (listaBombe.length < 16);
+
+    return listaBombe;
+};
+
+
 
 // Creo una funzione per generare la griglia 8*8
 function createGrid(Hcells, VCells) {
     const totalCells = Hcells * VCells;
 
 
-    const listaBombe = generaListaBombe()
+    const listaBombe = generaListaBombe(totalCells)
+    console.log(listaBombe);
+
     stampaGriglia(totalCells, listaBombe);
 
     console.log(totalCells);
@@ -31,28 +48,29 @@ function createGrid(Hcells, VCells) {
     //Uso un ciclo per creare le celle
 
     for (let i = 1; i <= totalCells; i++) {
-       
+
         // Creo un div con create element per rappresentare una singola cella
         const cell = document.createElement('div');
-       
+
         // Aggiungo la classe cell ai div 
         cell.classList.add("cell");
-        
+
         // Appendo la cella al container per quante volte lo indicherà il ciclo
         gridContainer.append(cell);
-       
+
         // Creo lo stile per la griglia
         gridContainer.style.width = `calc(var(--cell-size)* ${Hcells})`;
+
         // Stampo il numero incrementale per ogni cella
         cell.innerHTML = `<span>${i}</span>`;
 
         //Con Dataset creo un attributo che conterrà il numero della cella
-
+        cell.dataset.index = i;
 
         // Creo l'evento click all'interno di ogni cella
         cell.addEventListener("click", function () {
 
-            console.log("hai cliccato il numero",this.innerText);
+            console.log("hai cliccato il numero", +this.dataset.index);
 
             const numero = parseInt(this.innerText);
             if (numero >= i) {
