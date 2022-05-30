@@ -13,6 +13,8 @@
 
 const gridContainer = document.querySelector(".gridContainer");
 const gridNumbers = [];
+let gameOver = false;
+score = 0;
 
 // Creo una funzione con cui andrò a generare la lista delle bombe
 function generaListaBombe(number) {
@@ -69,21 +71,42 @@ function createGrid(Hcells, VCells) {
 
         // Creo l'evento click all'interno di ogni cella
         cell.addEventListener("click", function () {
+
+           if(this.classList.contains("bomba")|| 
+           this.classList.contains("backgroundBlue") ||
+           gameOver
+           
+           ) {
+               return;
+           }
+           
+           
+           
             const cellIndex = +this.dataset.index
 
             //Controllo che il nuemro della cella cliccata sia nell'array lista bombe
-            if (listaBombe.includes(cellIndex)) {
-                cell.classList.add("bomba");
-                  console.log("cella", cellIndex);
+            if (!listaBombe.includes(cellIndex)) {
+                cell.classList.add("backgroundBlue");
+                console.log("cella", cellIndex);
+                ;
+            } else {
+                cell.classList.add("bomba")
+                gameOver = true;
+                score++
+                console.log("cella", cellIndex)
             }
-
+          
 
         });
+
+
 
     };
 
 
-    function stampaGriglia(totalCells, listaBombe) { }
+    function stampaGriglia(cells, listaBombe) {
+
+    }
 
 };
-    createGrid(8, 8); 
+createGrid(8, 8); 
