@@ -1,0 +1,19 @@
+:root {
+    --cell-size: 70px;
+}
+
+.gridContainer {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0 auto;
+}
+
+.gridContainer .cell {
+    width: var(--cell-size);
+    height: var(--cell-size);
+    border: 1px solid black;
+}
+
+.backgroundBlue {
+    background-color: rgb(106, 106, 207);
+}
