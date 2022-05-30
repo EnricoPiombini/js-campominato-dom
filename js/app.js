@@ -69,20 +69,21 @@ function createGrid(Hcells, VCells) {
 
         // Creo l'evento click all'interno di ogni cella
         cell.addEventListener("click", function () {
+            const cellIndex = +this.dataset.index
 
-            console.log("hai cliccato il numero", +this.dataset.index);
-
-            const numero = parseInt(this.innerText);
-            if (numero >= i) {
-                this.classList.add("backgroundBlue");
-
+            //Controllo che il nuemro della cella cliccata sia nell'array lista bombe
+            if (listaBombe.includes(cellIndex)) {
+                cell.classList.add("bomba");
+                  console.log("cella", cellIndex);
             }
+
+
         });
 
     };
+
+
+    function stampaGriglia(totalCells, listaBombe) { }
+
 };
-
-function stampaGriglia(totalCells, listaBombe) { }
-
-
-createGrid(8, 8); 
+    createGrid(8, 8); 
