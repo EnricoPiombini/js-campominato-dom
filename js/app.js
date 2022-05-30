@@ -32,7 +32,10 @@ function generaListaBombe(number) {
     return listaBombe;
 };
 
-
+function stopGame (){
+    alert (`Hai ottenuto ${score} punti`);
+    
+}
 
 // Creo una funzione per generare la griglia 8*8
 function createGrid(Hcells, VCells) {
@@ -87,15 +90,18 @@ function createGrid(Hcells, VCells) {
             //Controllo che il nuemro della cella cliccata sia nell'array lista bombe
             if (!listaBombe.includes(cellIndex)) {
                 cell.classList.add("backgroundBlue");
+                score++
                 console.log("cella", cellIndex);
                 ;
             } else {
                 cell.classList.add("bomba")
                 gameOver = true;
-                score++
-                console.log("cella", cellIndex)
+
+                stopGame()
+               
+              
             }
-          
+            console.log("cella", cellIndex)
 
         });
 
